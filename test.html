@@ -1,0 +1,27 @@
+<script>
+    const opt = {
+  "credentials": "omit",
+  "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101 Firefox/68.0",
+      "Accept": "application/json",
+      "Accept-Language": "en-US,en;q=0.5"
+  },
+  "referrer": "https://covid2019-api.herokuapp.com/docs",
+  "method": "GET",
+  "mode": "no-cors" }
+
+
+function get() {
+return fetch("https://covid2019-api.herokuapp.com/v2/current", opt)
+.then((response) => {
+  return response;
+})
+.then((data) => {
+  console.log(data);
+})
+
+}
+
+
+console.log(get())
+</script>
