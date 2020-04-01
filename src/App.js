@@ -6,6 +6,7 @@ Date: 3/22/2020
 import React from 'react';
 import styled from 'styled-components'
 import $ from 'jquery';
+
 const Title = styled.h2`
 text-align: center;
 padding-bottom: 0.8cm;
@@ -41,7 +42,7 @@ fetch("https://api.covid19api.com/summary")
   });
 const Graph = styled.p`
 padding-top: 0.3cm;
-width: 10cm;
+width: 100%;
 `
 const Cases = styled.button`
 background-color: red;
@@ -163,8 +164,8 @@ function countryGraph(pop) {
   var healthy = (pop) - dataA.Countries[countryID].TotalConfirmed         
   healthy = healthy / pop  
   var sick = (dataA.Countries[countryID].TotalConfirmed + dataA.Countries[countryID].TotalDeaths) / (pop)
-  $("#CountryHealthy").width((10*healthy)*10+"cm")          
-  $("#countrySick").width((10*sick)*10+"cm") 
+  $("#CountryHealthy").width((100*healthy)*10+"%")          
+  $("#countrySick").width((100*sick)*10+"%") 
   $("#countryGraph").show()
 }
 $(document).ready(function(){
@@ -201,8 +202,9 @@ function App() {
           <tr id="totalR" class="Re">          
           </tr>
           <tr id="newR" class="Re">            
-          </tr>
-          <Graph id="countryGraph">
+          </tr>          
+        </table>
+        <Graph id="countryGraph">
           <table>
             <GH>
             <Healthy title="Healthy Population" id="CountryHealthy"></Healthy>
@@ -210,8 +212,6 @@ function App() {
             </GH>
           </table>
         </Graph>
-        </table>
-
         </center>
       </Data>
             </div>
