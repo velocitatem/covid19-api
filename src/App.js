@@ -158,9 +158,7 @@ function clearWWD() {
 }
 function countryGraph(pop) {
   $("#countryGraph").hide()
-  /*
-            <Healthy id="CountryHealthy"></Healthy>
-          <Sick id="countrySick"></Sick>*/
+
   var healthy = (pop) - dataA.Countries[countryID].TotalConfirmed         
   healthy = healthy / pop  
   var sick = (dataA.Countries[countryID].TotalConfirmed + dataA.Countries[countryID].TotalDeaths) / (pop)
@@ -171,7 +169,35 @@ function countryGraph(pop) {
 $(document).ready(function(){
   wwl()
   $("#countryGraph").hide()
+  news() 
 })
+
+function news() {
+  function showNews(dt) {  
+    dt = dt.articles
+    var a    
+    var art_data=""
+    for (a=0;a<10;a++) {      
+      art_data=`
+      <div class="col-sm-12">
+      <h4 id="newsHeader">`+dt[a].title+`</h4>
+      <p id="newsBody">`+dt[a].description+`<a href="`+dt[a].url+`">READ MORE</a></p ">
+      </div>
+      `
+      $("#news").append(art_data)
+    }
+  }
+  fetch("http://newsapi.org/v2/everything?q=covid-19&from=2020-04-02&to=2020-04-02&sortBy=popularity&apiKey=baf0b5498c6142cebdc197d0a00d5723")
+  .then((response) => {
+    return response.json();
+})
+.then((data) => {
+    showNews(data)
+})
+.catch(err => {
+    console.log(err);
+})
+}
 function App() {
   return (
     <div className="App">
@@ -241,6 +267,9 @@ function App() {
           </div>  
           <div id="chartContainer">                
               </div>
+              <div class="row" id="news">
+
+              </div>
           <DataSrc>
           
           <div class="row">
@@ -250,10 +279,10 @@ function App() {
               <h2>Data Sources</h2>
               </dSrc>
             </div>
-            <div class="col-sm-7">
+            <div class="col-sm-9">
               <a href="https://github.com/CSSEGISandData/COVID-19">github repo...</a> <br></br>
                 <p class="dtsc">
-                  World Health Organization, DXY.cn, BNO News, National Health Commission of the People’s Republic of China, China CDC, Hong Kong Department of Health, Macau Government, Taiwan CDC, US CDC, Government of Canada, Australia Government Department of Health, European Centre for Disease Prevention and Control, Ministry of Health Singapore, Italy Ministry of Health, 1Point3Arces, WorldoMeters
+                  World Health Organization, DXY.cn, BNO News, National Health Commission of the People’s Republic of China, China CDC, Hong Kong Department of Health, Macau Government, Taiwan CDC, US CDC, Government of Canada, Australia Government Department of Health, European Centre for Disease Prevention and Control, Ministry of Health Singapore, Italy Ministry of Health, 1Point3Arces, WorldoMeters <br></br> News: https://newsapi.org
                 </p>
             </div>
           </div>
