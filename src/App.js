@@ -106,10 +106,12 @@ function wwl() {
   $("#casesGD").attr("style", "background-color: red; color: white")
 
 }
+var listAR
 function update() {  
   for (var x=0;x<countries.length;x++) {
     let country = countries[x].Country
     $("#dropDown").append("<option onClick='redo()' value='"+x+"'>"+countries[x].Country+"</option>")
+    addToBoard(countries[x].Country, dataA.Countries[x].TotalConfirmed, dataA.Countries[x].TotalDeaths, dataA.Countries[x].TotalRecovered)
   }
   $("#opt").remove(":contains('')")
   $("#country").html("Country: " + dataA.Countries[countryID].Country);
@@ -158,7 +160,7 @@ function clearWWD() {
   totalRecoveriesWorldWide = 0
 }
 function countryGraph(pop) {
-  $("#countryGraph").hide()
+  
 
   var healthy = (pop) - dataA.Countries[countryID].TotalConfirmed         
   healthy = healthy / pop  
@@ -169,10 +171,107 @@ function countryGraph(pop) {
 }
 $(document).ready(function(){
   wwl()
-  $("#countryGraph").hide()
+  $("#countryGraph").hide()  
+  $("#ldb").hide()
 })
 
- 
+function addToBoard(country, cases, deaths, recov) {
+  var scrp
+  if(cases >= 2000 && cases < 5000) {
+    scrp =  `
+  <tr id="rowG">
+  <td id="colTM">
+    `+country+`
+  </td >
+  <td id="colTM">
+    `+cases+`
+  </td>
+  <td id="colTM">
+    `+deaths+`
+  </td>
+  <td id="colTM"> 
+    `+recov+`
+  </td>
+</tr>
+`
+
+  }
+  else if (cases == 0) {
+    scrp =  `
+  <tr id="rowG">
+  <td id="colTF">
+    `+country+`
+  </td >
+  <td id="colTF">
+    `+cases+`
+  </td>
+  <td id="colTF">
+    `+deaths+`
+  </td>
+  <td id="colTF"> 
+    `+recov+`
+  </td>
+</tr>`
+  }
+  else if (cases >= 5000 && cases < 50000) {
+    scrp =  `
+  <tr id="rowG">
+  <td id="colTC">
+    `+country+`
+  </td >
+  <td id="colTC">
+    `+cases+`
+  </td>
+  <td id="colTC">
+    `+deaths+`
+  </td>
+  <td id="colTC"> 
+    `+recov+`
+  </td>
+</tr>`
+  }
+  else if (cases >= 50000) {
+    scrp =  `
+    <tr id="rowG">
+    <td id="colTP">
+      `+country+`
+    </td >
+    <td id="colTP">
+      `+cases+`
+    </td>
+    <td id="colTP">
+      `+deaths+`
+    </td>
+    <td id="colTP"> 
+      `+recov+`
+    </td>
+  </tr>`
+  }
+  else if (cases < 2000){
+    scrp =  `
+    <tr id="rowG">
+    <td id="colTL">
+      `+country+`
+    </td >
+    <td id="colTL">
+      `+cases+`
+    </td>
+    <td id="colTL">
+      `+deaths+`
+    </td>
+    <td id="colTL"> 
+      `+recov+`
+    </td>
+  </tr>`
+  }
+
+$("#ldb").append(scrp)
+}
+
+function togTB() {
+  console.log("sh")
+  $("#ldb").toggle()
+}
 function App() {
   return (
     <div className="App">
@@ -186,7 +285,7 @@ function App() {
             <div class="col-sm-5">
             <Data>
         <center>
-          <select id="dropDown"></select><Update onClick={redo}>Find</Update>
+          <select id="dropDown"></select><Update onClick={redo}>Find</Update>          
         <table id="data-table">
           <b>          
           <tr id="country">
@@ -247,6 +346,34 @@ function App() {
                   <center>
                     <h4><a href="https://github.com/CSSEGISandData/COVID-19/tree/master/who_covid_19_situation_reports/who_covid_19_sit_rep_pdfs">Official WHO Reports</a></h4>
                   </center>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12">
+                  <h3>Leaderboard<button id="openT" onClick={togTB}>OPEN/HIDE</button></h3> 
+                  <div id="wrp">
+                    <table>
+                      <thead>
+                        <tr id="rowG">
+                          <td id="colT">
+                            Country
+                          </td >
+                          <td id="colT">
+                            Cases
+                          </td>
+                          <td id="colT">
+                            Deaths
+                          </td>
+                          <td id="colT"> 
+                            Recoveries
+                          </td>
+                        </tr>
+                      </thead>
+                      <tbody id="ldb">
+
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
           <DataSrc>
