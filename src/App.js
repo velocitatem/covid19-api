@@ -187,7 +187,18 @@ function news() {
       $("#news").append(art_data)
     }
   }
-  fetch("http://newsapi.org/v2/everything?q=covid-19&from=2020-04-02&to=2020-04-02&sortBy=popularity&apiKey=baf0b5498c6142cebdc197d0a00d5723")
+  fetch("http://newsapi.org/v2/everything?q=covid-19&from=2020-04-02&to=2020-04-02&sortBy=popularity&apiKey=6e01631cc8db4df88d26ca0003428d77", {
+    "method": "GET",
+
+    "headers": {
+      'Content-Type': 'application/json',      
+      "Accept":"application/json",
+      'X-Requested-With': 'XMLHttpRequest',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*'
+
+    }
+  })
   .then((response) => {
     return response.json();
 })
@@ -197,6 +208,7 @@ function news() {
 .catch(err => {
     console.log(err);
 })
+//
 }
 function App() {
   return (
@@ -280,7 +292,9 @@ function App() {
               </dSrc>
             </div>
             <div class="col-sm-9">
-              <a href="https://github.com/CSSEGISandData/COVID-19">github repo...</a> <br></br>
+            <a href="https://covid19api.com">source API</a>
+              <a href="https://github.com/CSSEGISandData/COVID-19">github repo...</a> <br>              
+              </br>
                 <p class="dtsc">
                   World Health Organization, DXY.cn, BNO News, National Health Commission of the People’s Republic of China, China CDC, Hong Kong Department of Health, Macau Government, Taiwan CDC, US CDC, Government of Canada, Australia Government Department of Health, European Centre for Disease Prevention and Control, Ministry of Health Singapore, Italy Ministry of Health, 1Point3Arces, WorldoMeters <br></br> News: https://newsapi.org
                 </p>
