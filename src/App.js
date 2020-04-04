@@ -39,6 +39,7 @@ fetch("https://api.covid19api.com/summary")
     dataB = dataA.Countries[countryID]
     countries = dataA.Countries
     update()
+    console.log(data)
   });
 const Graph = styled.p`
 padding-top: 0.3cm;
@@ -169,47 +170,9 @@ function countryGraph(pop) {
 $(document).ready(function(){
   wwl()
   $("#countryGraph").hide()
-  news() 
 })
 
-function news() {
-  function showNews(dt) {  
-    dt = dt.articles
-    var a    
-    var art_data=""
-    for (a=0;a<10;a++) {      
-      art_data=`
-      <div class="col-sm-12">
-      <h4 id="newsHeader">`+dt[a].title+`</h4>
-      <p id="newsBody">`+dt[a].description+`<a href="`+dt[a].url+`">READ MORE</a></p ">
-      </div>
-      `
-      $("#news").append(art_data)
-    }
-  }
-  fetch("http://newsapi.org/v2/everything?q=covid-19&from=2020-04-02&to=2020-04-02&sortBy=popularity&apiKey=6e01631cc8db4df88d26ca0003428d77", {
-    "method": "GET",
-
-    "headers": {
-      'Content-Type': 'application/json',      
-      "Accept":"application/json",
-      'X-Requested-With': 'XMLHttpRequest',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': '*'
-
-    }
-  })
-  .then((response) => {
-    return response.json();
-})
-.then((data) => {
-    showNews(data)
-})
-.catch(err => {
-    console.log(err);
-})
-//
-}
+ 
 function App() {
   return (
     <div className="App">
@@ -280,7 +243,11 @@ function App() {
           <div id="chartContainer">                
               </div>
               <div class="row" id="news">
-
+                <div class="col-12">
+                  <center>
+                    <h4><a href="https://github.com/CSSEGISandData/COVID-19/tree/master/who_covid_19_situation_reports/who_covid_19_sit_rep_pdfs">Official WHO Reports</a></h4>
+                  </center>
+                </div>
               </div>
           <DataSrc>
           
