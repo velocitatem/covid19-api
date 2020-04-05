@@ -310,7 +310,7 @@ fetch("https://danalves24com.github.io/data/covid19/news/")
   var a
   for(a=0;a<10;a++) {
     let atcs = `
-      <h4>`+data[a].title+`</h4> 
+      <h5>`+data[a].title+`</h5> 
       <p>`+data[a].description+`<a href="`+data[a].url+`"> READ MORE </a> </p>
     `
     $("#articls").append(atcs)
