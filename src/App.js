@@ -285,7 +285,11 @@ function App() {
             <div class="col-sm-5">
             <Data>
         <center>
-          <select id="dropDown"></select><Update onClick={redo}>Find</Update>          
+          <select id="dropDown"></select>
+          <Update onClick={redo}>Find</Update>    
+          <datalist id="ctr">
+            <option value="1" name="afg">afg</option>
+            </datalist>      
         <table id="data-table">
           <b>          
           <tr id="country">
@@ -344,13 +348,18 @@ function App() {
               <div class="row" id="news">
                 <div class="col-12">
                   <center>
-                    <h4><a href="https://github.com/CSSEGISandData/COVID-19/tree/master/who_covid_19_situation_reports/who_covid_19_sit_rep_pdfs">Official WHO Reports</a></h4>
-                  </center>
+                    <hr></hr>
+                  <h3>Latest Official WHO Report</h3>
+                    <object data=" https://api-data.netlify.com/data/covid-art-0.pdf" type="application/pdf" id="pageG">
+                      <p>something went wrong <a href=" https://api-data.netlify.com/data/covid-art-0.pdf">to the PDF!</a></p>
+                    </object>
+                    </center>
                 </div>
               </div>
               <div class="row">
                 <div class="col-12">
-                  <h3>Leaderboard<button id="openT" onClick={togTB}>OPEN/HIDE</button></h3> 
+                  <hr></hr>
+                  <h4><button id="openT" onClick={togTB}>Show/Hide Table</button></h4> 
                   <div id="wrp">
                     <table>
                       <thead>
