@@ -274,7 +274,12 @@ function togTB() {
 }
 function App() {
   return (
-    <div className="App">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+
+
+    <div id="appSRC" className="App">
       <Title>
         COVID-19 Intel
       </Title>
@@ -406,6 +411,9 @@ function App() {
           <p>Page Author - Daniel Rosel</p>
           </DataSrc>
         </div>
+      </div>
+    </div>
+    </div>
       </div>
     </div>
   );
