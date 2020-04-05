@@ -173,6 +173,8 @@ $(document).ready(function(){
   wwl()
   $("#countryGraph").hide()  
   $("#ldb").hide()
+  getNewsSource()
+  artic()
 })
 
 function addToBoard(country, cases, deaths, recov) {
@@ -272,13 +274,58 @@ function togTB() {
   console.log("sh")
   $("#ldb").toggle()
 }
+function getNewsSource() {
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "",
+    "method": "GET",
+    mode: "no-cors",
+    headers: {
+        'Access-Control-Allow-Origin': "*"
+    }
+  }
+  //https://danalves24com.github.io/data/covid19/
+fetch("https://danalves24com.github.io/data/covid19/")
+.then((response) => {
+  return response.json();
+})
+.then((data) => {
+  console.log(data)
+  $("#pageG").attr('data', data[0].link)
+})
+.catch(err => {
+  console.log(err);
+})
+
+}
+function artic() {
+fetch("https://danalves24com.github.io/data/covid19/news/")
+.then((response) => {
+  return response.json();
+})
+.then((data) => {
+  console.log(data)  
+  data = data.articles
+  var a
+  for(a=0;a<10;a++) {
+    let atcs = `
+      <h4>`+data[a].title+`</h4> 
+      <p>`+data[a].description+`<a href="`+data[a].url+`"> READ MORE </a> </p>
+    `
+    $("#articls").append(atcs)
+  }
+})
+.catch(err => {
+  console.log(err);
+})
+//$("articls")
+}
 function App() {
   return (
     <div class="container">
       <div class="row">
         <div class="col-12">
-
-
     <div id="appSRC" className="App">
       <Title>
         COVID-19 Intel
@@ -355,10 +402,16 @@ function App() {
                   <center>
                     <hr></hr>
                   <h3>Latest Official WHO Report</h3>
-                    <object data="https://api-data.netlify.com/data/latest-covid19-report.pdf" type="application/pdf" id="pageG">
+                    <object type="application/pdf" id="pageG">
                       <p>sorry, something went wrong. download the pdf <a href="https://api-data.netlify.com/data/latest-covid19-report.pdf">HERE!</a></p>
                     </object>
                     </center>
+                    <div id="articls">
+                      <hr></hr>
+                      <center>
+                      <h3>Related News</h3>
+                      </center>
+                    </div>
                 </div>
               </div>
               <div class="row">
