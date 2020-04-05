@@ -351,7 +351,7 @@ function App() {
                     <hr></hr>
                   <h3>Latest Official WHO Report</h3>
                     <object data=" https://api-data.netlify.com/data/covid-art-0.pdf" type="application/pdf" id="pageG">
-                      <p>something went wrong <a href=" https://api-data.netlify.com/data/covid-art-0.pdf">to the PDF!</a></p>
+                      <p>sorry, something went wrong. download the pdf <a href=" https://api-data.netlify.com/data/covid-art-0.pdf">HERE!</a></p>
                     </object>
                     </center>
                 </div>
