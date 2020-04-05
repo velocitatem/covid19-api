@@ -350,8 +350,8 @@ function App() {
                   <center>
                     <hr></hr>
                   <h3>Latest Official WHO Report</h3>
-                    <object data=" https://api-data.netlify.com/data/covid-art-0.pdf" type="application/pdf" id="pageG">
-                      <p>sorry, something went wrong. download the pdf <a href=" https://api-data.netlify.com/data/covid-art-0.pdf">HERE!</a></p>
+                    <object data="https://api-data.netlify.com/data/latest-covid19-report.pdf" type="application/pdf" id="pageG">
+                      <p>sorry, something went wrong. download the pdf <a href="https://api-data.netlify.com/data/latest-covid19-report.pdf">HERE!</a></p>
                     </object>
                     </center>
                 </div>
@@ -395,9 +395,9 @@ function App() {
               </dSrc>
             </div>
             <div class="col-sm-9">
-            <a href="https://covid19api.com">source API</a>
-              <a href="https://github.com/CSSEGISandData/COVID-19">github repo...</a> <br>              
-              </br>
+            <a href="https://covid19api.com">source API</a> <br></br>
+              <a href="https://github.com/CSSEGISandData/COVID-19">github repo...</a> <br></br>             
+               <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019/situation-reports/">Reports..</a><br></br>
                 <p class="dtsc">
                   World Health Organization, DXY.cn, BNO News, National Health Commission of the People’s Republic of China, China CDC, Hong Kong Department of Health, Macau Government, Taiwan CDC, US CDC, Government of Canada, Australia Government Department of Health, European Centre for Disease Prevention and Control, Ministry of Health Singapore, Italy Ministry of Health, 1Point3Arces, WorldoMeters <br></br> News: https://newsapi.org
                 </p>
