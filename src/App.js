@@ -175,6 +175,7 @@ $(document).ready(function(){
   $("#ldb").hide()
   getNewsSource()
   artic()
+  visit()
 })
 
 function addToBoard(country, cases, deaths, recov) {
@@ -321,6 +322,23 @@ fetch("https://danalves24com.github.io/data/covid19/news/")
 })
 //$("articls")
 }
+
+function visit() {
+  const headers = new Headers()
+headers.append("Content-Type", "application/json")
+
+const body = { "visiti-time": Date.getTime() }
+
+const options = {
+  method: "POST",
+  headers,
+  mode: "cors",
+  body: JSON.stringify(body),
+}
+
+fetch("https://enmlfbmjyaluo.x.pipedream.net/", options)
+}
+
 function App() {
   return (
     <div class="container">
