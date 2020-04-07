@@ -327,7 +327,7 @@ function visit() {
   const headers = new Headers()
 headers.append("Content-Type", "application/json")
 
-const body = { "visiti-time": Date.getTime() }
+const body = { "visiti-time": "someone just opened covider" }
 
 const options = {
   method: "POST",
